@@ -19,6 +19,8 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chains import SequentialChain
 
+client = OpenAI(openai_api_key='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')
+
 st.title("Medical Condition")
 
 medical_condition = st.sidebar.text_area(
@@ -49,5 +51,5 @@ if medical_condition:
   openai.api_key = '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' 
   for text_batch in split_pdf_into_batches(bucket_name, common_string, batch_size):
     # analysis_result = analyze_text_batch(text_batch)
-    response = medical_cond_analysis(medical_condition, text_batch, openai_api_key='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')
+    response = medical_cond_analysis(medical_condition, text_batch, openai_api_key ='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')
     st.text(response['policy_analysis'])
