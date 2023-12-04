@@ -24,7 +24,7 @@ from langchain.chains import SequentialChain
 load_dotenv()
 
 # Get OpenAI API Key from environment variable
-openai_api_key = os.getenv("OPENAI_API_KEY")
+openai_api_key = os.getenv("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")
 
 if not openai_api_key:
     st.error("OpenAI API key not found. Please set it in your environment variables.")
