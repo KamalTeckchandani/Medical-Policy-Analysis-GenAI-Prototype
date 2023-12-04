@@ -13,43 +13,32 @@ import boto3
 import io
 from openai import OpenAI
 from PyPDF2 import PdfReader
-# import pdb
+import os
+from dotenv import load_dotenv
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chains import SequentialChain
 
-client = OpenAI(openai_api_key='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')
+# Load environment variables
+load_dotenv()
 
-st.title("Medical Condition")
+# Get OpenAI API Key from environment variable
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
-medical_condition = st.sidebar.text_area(
-    label="Enter the Medical Condition",
-    max_chars=30
-)
+if not openai_api_key:
+    st.error("OpenAI API key not found. Please set it in your environment variables.")
+    st.stop()
 
-with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="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", type="password")
-    # def analyze_text_batch(text_batch):
-    #     # Make an API call to analyze the text batch
-    #     response = openai.Completion.create(
-    #         engine="davinci",
-    #         prompt=text_batch,
-    #         max_tokens=50,  # Adjust as needed
-    #         n = 1  # You can request multiple completions for more insights
-    #     )
-    #     return response.choices[0].text
+st.title("Medical Condition Analysis")
+
+medical_condition = st.sidebar.text_area("Enter the Medical Condition", max_chars=30)
 
 if medical_condition:
-  if not openai_api_key:
-   st.info("Please add your OpenAI API key to continue.")
-   st.stop()
+    bucket_name = 'policydocumentschiesta'
+    common_string = medical_condition  # Specify the common string in file names
+    batch_size = 4000
 
-  bucket_name = 'policydocumentschiesta'
-  common_string = medical_condition  # Specify the common string in file names
-  batch_size = 4000
-  openai.api_key = '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' 
-  for text_batch in split_pdf_into_batches(bucket_name, common_string, batch_size):
-    # analysis_result = analyze_text_batch(text_batch)
-    response = medical_cond_analysis(medical_condition, text_batch, openai_api_key ='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')
-    st.text(response['policy_analysis'])
+    for text_batch in split_pdf_into_batches(bucket_name, common_string, batch_size):
+        response = medical_cond_analysis(medical_condition, text_batch, openai_api_key)
+        st.text(response['policy_analysis'])
