@@ -17,7 +17,8 @@ from langchain.chains import SequentialChain
 from dotenv import load_dotenv
 
 load_dotenv()
-client = OpenAI()
+# client = OpenAI()
+client = OpenAI(openai_api_key='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')
 
 
 def split_pdf_into_batches(bucket_name, common_string, batch_size):
@@ -75,6 +76,9 @@ def medical_cond_analysis(medical_condition, text_batch, openai_api_key):
     response = name_chain({'medical_condition': medical_condition, 'text_batch': text_batch})
 
     return response 
+
+def __init__(self, openai_api_key: str):
+    self.openai_api_key = openai_api_key    
 
 # if __name__ == '__main__':
     # print(medical_cond_analysis('Cochlear Implantation'))
