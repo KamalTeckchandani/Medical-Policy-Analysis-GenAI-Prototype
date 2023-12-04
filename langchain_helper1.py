@@ -8,7 +8,7 @@ import io
 import retrying
 from openai import OpenAI
 from PyPDF2 import PdfReader
-# import pdb
+import os
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
@@ -16,9 +16,16 @@ from langchain.chains import SequentialChain
 
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
-# client = OpenAI()
+
+# Use the OpenAI API key from the environment variable
+openai_api_key = os.getenv('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')
 client = OpenAI(openai_api_key='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')
+
+# Ensure the OpenAI API key is provided
+if not openai_api_key:
+    raise ValueError("No OpenAI API key found. Please set the OPENAI_API_KEY environment variable.")
 
 
 def split_pdf_into_batches(bucket_name, common_string, batch_size):
