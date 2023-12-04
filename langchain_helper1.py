@@ -61,7 +61,7 @@ def split_pdf_into_batches(bucket_name, common_string, batch_size):
         print(e)
    
 @retrying.retry(wait_fixed=1000, stop_max_attempt_number=3)  # Retry 3 times with a 1-second delay between retries   
-def medical_cond_analysis(medical_condition, text_batch):
+def medical_cond_analysis(medical_condition, text_batch, openai_api_key):
     llm = OpenAI(temperature=0.7, openai_api_key= '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' )
 
     prompt_template_name = PromptTemplate(
