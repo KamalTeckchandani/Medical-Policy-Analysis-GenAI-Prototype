@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def medical_cond_analysis(medical_condition):
-    llm = OpenAI(temperature=0.7, openai_api_key= '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' )
+    llm = OpenAI(temperature=0.7, openai_api_key= 'NA' )
 
     prompt_template_name = PromptTemplate(
         input_variables=['medical_condition'],
