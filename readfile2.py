@@ -8,8 +8,8 @@ client = OpenAI()
 
 def split_pdf_into_batches(bucket_name, common_string, batch_size):
 
- access_key = 'AKIARRRXC4SUHUDGBD67'
- secret_key = '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'
+ access_key = 'NA'
+ secret_key = 'NA'
 
  s3 = boto3.client('s3', aws_access_key_id=access_key, aws_secret_access_key=secret_key)
  try:
