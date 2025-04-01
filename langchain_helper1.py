@@ -20,8 +20,8 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI()
 # Use the OpenAI API key from the environment variable
-openai_api_key = os.getenv('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')
-client = OpenAI(openai_api_key='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')
+openai_api_key = os.getenv('NA')
+client = OpenAI(openai_api_key='NA')
 
 # Ensure the OpenAI API key is provided
 if not openai_api_key:
