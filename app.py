@@ -7,8 +7,8 @@ from openai import OpenAI
 
 def split_pdf_into_batches(bucket_name, common_string, batch_size):
 
- access_key = 'AKIARRRXC4SUHUDGBD67'
- secret_key = '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'
+ access_key = 'NA'
+ secret_key = 'NA'
 
  s3 = boto3.client('s3', aws_access_key_id=access_key, aws_secret_access_key=secret_key)
  try:
@@ -46,7 +46,7 @@ def split_pdf_into_batches(bucket_name, common_string, batch_size):
         print(e)
 
 def analyze_text_batch(text_batch):
-    openai.api_key = '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'
+    openai.api_key = 'NA'
     # Make an API call to analyze the text batch
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -63,7 +63,7 @@ st.title('Policy Analyzer')
 bucket_name = 'policydocumentschiesta'
 common_string = 'Cochlear'  # Specify the common string in file names
 batch_size = 4000
-openai.api_key = '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'  # Fill in your API key
+openai.api_key = 'NA'  # Fill in your API key
 
 # Button to trigger analysis
 if st.button('Analyze'):
