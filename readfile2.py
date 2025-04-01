@@ -47,7 +47,7 @@ def split_pdf_into_batches(bucket_name, common_string, batch_size):
         print(e)
 
 def analyze_text_batch(text_batch):
-    openai.api_key = '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'
+    openai.api_key = 'NA'
     # Make an API call to analyze the text batch
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -71,7 +71,7 @@ def analyze_text_batch(text_batch):
 bucket_name = 'policydocumentschiesta'
 common_string = 'Cochlear'  # Specify the common string in file names
 batch_size = 4000
-openai.api_key = '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'
+openai.api_key = 'NA'
 
 for text_batch in split_pdf_into_batches(bucket_name, common_string, batch_size):
     analysis_result = analyze_text_batch(text_batch)
